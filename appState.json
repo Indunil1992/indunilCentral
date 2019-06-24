@@ -1,0 +1,102 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "f367fc98-4688-46ae-ae12-56f053a0c095": {
+        "id": "f367fc98-4688-46ae-ae12-56f053a0c095",
+        "parent": null,
+        "name": "indunilCentral",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "16a13876-b1df-48c7-b8ca-f33f977735fa"
+        ],
+        "isRemovable": false,
+        "filePath": "indunilCentral"
+      },
+      "16a13876-b1df-48c7-b8ca-f33f977735fa": {
+        "id": "16a13876-b1df-48c7-b8ca-f33f977735fa",
+        "parent": "f367fc98-4688-46ae-ae12-56f053a0c095",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "indunilCentral/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "apigcaCentral1centralindunilqaoptions",
+            "config": {}
+          }
+        ]
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "f367fc98-4688-46ae-ae12-56f053a0c095",
+    "openFiles": [
+      "16a13876-b1df-48c7-b8ca-f33f977735fa"
+    ],
+    "currentFileId": "16a13876-b1df-48c7-b8ca-f33f977735fa",
+    "resources": {
+      "apigcaCentral1centralindunilqaoptions": {
+        "name": "apigcaCentral1centralindunilqaoptions",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "ca-central-1",
+          "apiMode": 0,
+          "apiName": "central",
+          "endpointType": "REGIONAL",
+          "resourceMode": 0,
+          "resourceName": "indunil/qa",
+          "resourcePath": "/indunil/qa",
+          "restMethod": "OPTIONS",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 0,
+          "stageName": "test",
+          "mode": 0
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "indunilCentral",
+    "projectDescription": "indunilCentral",
+    "projectVersion": "1.0.0",
+    "projectRegion": "ca-central-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1561376405861
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "indunilCentral",
+      "url": "https://github.com/Indunil1992/indunilCentral"
+    }
+  }
+}
