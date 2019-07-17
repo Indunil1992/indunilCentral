@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "indunilCentral/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "let AWS = require('aws-sdk');\nconst sns = new AWS.SNS();\nconst s3 = new AWS.S3();\n\nexports.handler = function (event, context, callback) {\n    s3.listObjects({\n        'Bucket': 'indunil1',\n        'MaxKeys': 10,\n        'Prefix': '1'\n    }).promise()\n        .then(data => {\n            console.log(data);           // successful response\n            /*\n            data = {\n                Contents: [\n                    {\n                       ETag: \"\\\"70ee1738b6b21e2c8a43f3a5ab0eee71\\\"\",\n                       Key: \"example1.jpg\",\n                       LastModified: \"<Date Representation>\",\n                       Owner: {\n                          DisplayName: \"myname\",\n                          ID: \"12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc\"\n                       },\n                       Size: 11,\n                       StorageClass: \"STANDARD\"\n                    },\n                    // {...}\n                ]\n            }\n            */\n        })\n        .catch(err => {\n            console.log(err, err.stack); // an error occurred\n        });\n\n    sns.publish({\n        Message: 'hi msge ',\n        Subject: 'hi sub',\n        MessageAttributes: {},\n        MessageStructure: 'String',\n        TopicArn: 'arn:aws:sns:ca-central-1:318300609668:indunil-canada'\n    }).promise()\n        .then(data => {\n            // your code goes here\n        })\n        .catch(err => {\n            // error handling goes here\n        });\n\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -32,7 +32,7 @@
         },
         "triggers": [
           {
-            "resourceName": "apigcaCentral1centralindunilqaoptions",
+            "resourceName": "apigcaCentral1checkqainduany",
             "config": {}
           }
         ]
@@ -45,23 +45,52 @@
     ],
     "currentFileId": "16a13876-b1df-48c7-b8ca-f33f977735fa",
     "resources": {
-      "apigcaCentral1centralindunilqaoptions": {
-        "name": "apigcaCentral1centralindunilqaoptions",
+      "apigcaCentral1checkqainduany": {
+        "name": "apigcaCentral1checkqainduany",
         "type": "API_GATEWAY",
         "config": {
           "selectedRegion": "ca-central-1",
           "apiMode": 0,
-          "apiName": "central",
+          "apiName": "check",
           "endpointType": "REGIONAL",
           "resourceMode": 0,
-          "resourceName": "indunil/qa",
-          "resourcePath": "/indunil/qa",
-          "restMethod": "OPTIONS",
+          "resourceName": "qa/indu",
+          "resourcePath": "/qa/indu",
+          "restMethod": "ANY",
           "proxyIntegration": false,
           "enableCORS": false,
           "stageMode": 0,
-          "stageName": "test",
+          "stageName": "Test",
           "mode": 0
+        }
+      },
+      "s3indunil1": {
+        "name": "s3indunil1",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "ca-central-1",
+            "name": "indunil1"
+          }
+        }
+      },
+      "snscaCentral1indunilCanada": {
+        "name": "snscaCentral1indunilCanada",
+        "type": "SNS",
+        "config": {
+          "topicMode": 0,
+          "topicName": "indunil-canada",
+          "topicArn": "arn:aws:sns:ca-central-1:318300609668:indunil-canada",
+          "topicRegion": "ca-central-1",
+          "snsType": 0,
+          "topicDisplayName": "indunil-ca",
+          "subscriptions": [
+            {
+              "type": "email",
+              "endpoint": "indunil@adroitlogic.com"
+            }
+          ]
         }
       }
     },
@@ -80,7 +109,15 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {}
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
     }
   },
   "PROJECT_META": {
@@ -90,7 +127,7 @@
     "projectRegion": "ca-central-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1561376405861
+    "lastSave": 1563339257177
   },
   "VCS_STATE": {
     "provider": "GitHub",
